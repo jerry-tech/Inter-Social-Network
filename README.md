@@ -17,5 +17,5 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 Udoh Jeremiah. Also, a special appreciation to Kazzem Taiwo (https://github.com/alevel7) for the backend(API) development used for the project.
 
 ## Angular Topics Covered
-Binding && Interpolation, pipes, Observables, template driven form, reactive forms, rxjs, httpclient service, dependency injection, angular behavioural subject, Browser animation component interaction and so more ...
+Binding && Interpolation, pipes, Observables, template driven form, reactive forms, rxjs, httpclient service, dependency injection, angular behavioural subject, Browser animation component interaction, angular-pwa and so much more ...
 
