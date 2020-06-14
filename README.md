@@ -3,15 +3,15 @@
 Teamwork is an internal social network for employees of an organization. The goal of this
 application is to facilitate more interaction between colleagues and promote team bonding.
 
-# Authentication 
-Username: jeremiah@gmail.com, password: 54321
+## Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Link
 https://sleepy-ritchie-fffa1d.netlify.app
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Authentication 
+Username: jeremiah@gmail.com, password: 54321
 
 ## Angular Version
 @angular cli version 8.3.20
