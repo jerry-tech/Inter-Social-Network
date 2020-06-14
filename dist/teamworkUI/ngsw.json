@@ -1,0 +1,113 @@
+{
+  "configVersion": 1,
+  "timestamp": 1592118720210,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/favicon.ico",
+        "/index.html",
+        "/main-es2015.cf55228040ffef3acdfb.js",
+        "/main-es5.cf55228040ffef3acdfb.js",
+        "/manifest.webmanifest",
+        "/polyfills-es2015.5b10b8fd823b6392f1fd.js",
+        "/polyfills-es5.8e50a9832860f7cf804a.js",
+        "/runtime-es2015.c5fa8325f89fc516600b.js",
+        "/runtime-es5.c5fa8325f89fc516600b.js",
+        "/scripts.1216b4be0933c8af4627.js",
+        "/styles.97e2fd654dbbfa831fd5.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/assets/Images/Teamwork.jpg",
+        "/assets/Images/agenda.jpg",
+        "/assets/Images/team.png",
+        "/assets/Images/teamicon.png",
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png",
+        "/fontawesome-webfont.674f50d287a8c48dc19b.eot",
+        "/fontawesome-webfont.912ec66d7572ff821749.svg",
+        "/fontawesome-webfont.af7ae505a9eed503f8b8.woff2",
+        "/fontawesome-webfont.b06871f281fee6b241d6.ttf",
+        "/fontawesome-webfont.fee66e712a8a08eef580.woff"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "posts",
+      "patterns": [
+        "https:\\/\\/myteamworkproject\\.herokuapp\\.com\\/v1\\/feed",
+        "https:\\/\\/myteamworkproject\\.herokuapp\\.com\\/images\\/.*"
+      ],
+      "strategy": "performance",
+      "maxSize": 10,
+      "maxAge": 2000,
+      "timeoutMs": 15000,
+      "version": 1
+    }
+  ],
+  "hashTable": {
+    "/assets/Images/Teamwork.jpg": "05b32c541260cd786d232adf2e9894866f1dfb77",
+    "/assets/Images/agenda.jpg": "96d5eae249870bbc0d2c80ae6103d8506416cf5d",
+    "/assets/Images/team.png": "04026027b8f59740bcc704345f2a9b415c14092c",
+    "/assets/Images/teamicon.png": "6ea3d70c837e497ea6e1d0e9503a53b0e15b0183",
+    "/assets/icons/icon-128x128.png": "8c7c7771c7891f411e9d5674ab21914db20fb686",
+    "/assets/icons/icon-144x144.png": "34a1887ca0b4a0c8d45f6e27881ac6c0f1679fc8",
+    "/assets/icons/icon-152x152.png": "7806c7cf631d7c5c9e098c6e7ce0f74607881a6b",
+    "/assets/icons/icon-192x192.png": "87a76fa2b40d5f2677474b023da01b1701aecb19",
+    "/assets/icons/icon-384x384.png": "09a5bc90b01dde1fc65ba99947e73b561733af42",
+    "/assets/icons/icon-512x512.png": "1110dd43e84d6b3eaf2e331a9e12aa8c99fcbe54",
+    "/assets/icons/icon-72x72.png": "372d215828b701f3f22b883d01192390e78c8783",
+    "/assets/icons/icon-96x96.png": "d3f57c0f97c7895bb712024fc3029dd348c6e399",
+    "/favicon.ico": "a870efa55ea12b0e37d5890eba3235e39886d93e",
+    "/fontawesome-webfont.674f50d287a8c48dc19b.eot": "d980c2ce873dc43af460d4d572d441304499f400",
+    "/fontawesome-webfont.912ec66d7572ff821749.svg": "98a8aa5cf7d62c2eff5f07ede8d844b874ef06ed",
+    "/fontawesome-webfont.af7ae505a9eed503f8b8.woff2": "d6f48cba7d076fb6f2fd6ba993a75b9dc1ecbf0c",
+    "/fontawesome-webfont.b06871f281fee6b241d6.ttf": "13b1eab65a983c7a73bc7997c479d66943f7c6cb",
+    "/fontawesome-webfont.fee66e712a8a08eef580.woff": "28b782240b3e76db824e12c02754a9731a167527",
+    "/index.html": "a7b54ffd6f12da76d623e1a7b870ba25416ace39",
+    "/main-es2015.cf55228040ffef3acdfb.js": "cb42f78a92218bbe4eea74d6d0f75b42cb8ee263",
+    "/main-es5.cf55228040ffef3acdfb.js": "5c1e27b79ff08fe7b58ca57001c28dc473042166",
+    "/manifest.webmanifest": "ca16e6d905814a05ea561d1845a55e82c67688c9",
+    "/polyfills-es2015.5b10b8fd823b6392f1fd.js": "9abfe15f17820a646e3d51c420908d9f8f7b69b8",
+    "/polyfills-es5.8e50a9832860f7cf804a.js": "a9abcb7b9e74feed315773004b623373fdf3fada",
+    "/runtime-es2015.c5fa8325f89fc516600b.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/runtime-es5.c5fa8325f89fc516600b.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/scripts.1216b4be0933c8af4627.js": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "/styles.97e2fd654dbbfa831fd5.css": "3500fc6991ee1ac1b27a5742c92867addb8353ef"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
