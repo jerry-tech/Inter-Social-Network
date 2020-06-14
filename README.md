@@ -3,6 +3,9 @@
 Teamwork is an internal social network for employees of an organization. The goal of this
 application is to facilitate more interaction between colleagues and promote team bonding.
 
+# Authentication 
+Username: jeremiah@gmail.com, password: 54321
+
 ## Link
 https://sleepy-ritchie-fffa1d.netlify.app
 
