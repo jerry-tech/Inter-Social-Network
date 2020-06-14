@@ -1,0 +1,70 @@
+<div class="w3_block  w3-white">
+    <div id="sub_cont">
+        <aside class="w3-rest w3-margin w3_inline">
+            <img style="width:70px;height:70px;border-radius:50px;" *ngIf="feed.userImage" src="https://myteamworkproject.herokuapp.com/images/{{feed.userImage}}" alt="username">
+            <div>
+                <main style="font-weight: bold;" class="w3-margin-left w3-center w3-margin-right" *ngIf="feed.firstName || feed.lastName">
+                    {{ feed.firstName }} {{ feed.lastName }}</main>
+                <main style="font-weight: bold;" class="w3-margin-top w3-margin-left">{{ feed.title | titlecase }}</main>
+            </div>
+        </aside>
+        <aside>
+            <main class="w3-margin" style="font-weight: 300;">
+                {{ feed.article }}
+                <img src='https://myteamworkproject.herokuapp.com/images/{{feed.imageUrl}}' style="max-height:310px;width:98%; height:80%;" *ngIf="feed.imageUrl">
+            </main>
+        </aside>
+        <aside class="w3-rest w3-margin-left w3-padding-bottom w3-margin-bottom">
+            <aside class="w3_inline">
+                <div class="w3-button w3-card postbtn" [routerLink]="['/Comment', feed.article_id]" title="Comment" *ngIf="feed.article && !isChecked(feed.flagged)"><i class="fa fa-comment"></i></div>
+                <div class="w3-button  w3-card  postbtn" [routerLink]="['/ImageComment', feed.gif_id]" title="Comment" *ngIf="feed.imageUrl"><i class="fa fa-comment"></i></div>
+
+                <div class="w3-button w3-card postbtn" *ngIf="isChecked(feed.flagged) && feed.article_id" title="Unflag Post" (click)='unflagPost(feed.article_id,feed.flagged)'><span class="fa fa-flag-checkered"></span></div>
+                <div class="w3-button  w3-card postbtn w3-red" (click)='delFlaggedPost(feed.article_id)' title="Delete Post" *ngIf="isChecked(feed.flagged)"><i class="fa fa-trash"></i></div>
+
+                <div class="w3-button w3-card postbtn" *ngIf="!isChecked(feed.flagged) && feed.article_id" title="Flag Post" (click)='flagPost(feed.article_id,feed.flagged)'><span class="fa fa-flag-checkered"></span> </div>
+                <div style="font-weight: bold;" class="w3-button w3-card postbtn" id="current">
+                    <app-date [postdate]="feed.dateCreated"></app-date>
+                </div>
+            </aside>
+
+        </aside>
+
+    </div>
+    <app-spinner *ngIf="isLoading"></app-spinner>
+    <div *ngIf="flagGood">
+        <main *ngFor="let flag of flagSuccess">
+            <app-response [response]="flag"></app-response>
+        </main>
+    </div>
+    <div *ngIf="flagErr">
+        <main *ngFor="let flagerr of flagError">
+            <app-response [response]="flagerr"></app-response>
+        </main>
+    </div>
+    <div *ngIf="clickresponse">
+        <div *ngFor="let item of responseData">
+            <app-response [response]="item"></app-response>
+        </div>
+    </div>
+
+    <div *ngIf="errorresponse">
+        <div *ngFor="let error of errorData">
+            <app-response [response]="error"></app-response>
+        </div>
+    </div>
+
+    <div *ngIf="deleteresponse">
+        <div *ngFor="let delete of deleteData">
+            <app-response [response]="delete"></app-response>
+        </div>
+    </div>
+
+    <div *ngIf="deleteError">
+        <div *ngFor="let delete of deleteIss">
+            <app-response [response]="delete"></app-response>
+        </div>
+    </div>
+
+
+</div>

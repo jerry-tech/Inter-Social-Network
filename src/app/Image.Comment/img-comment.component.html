@@ -1,0 +1,78 @@
+<main id="top" class="w3-text-white" style="background:whitesmoke">
+    <aside class="w3_margin">
+        <div class="w3-margin-bottom" *ngIf="selectedImage">
+            <div class="w3_block w3-card-24 w3-color">
+                <aside class="w3-rest w3-margin w3_inline">
+                    <img style="width:70px;height:70px;border-radius:50px;" class="w3-margin-top" src="https://myteamworkproject.herokuapp.com/images/{{selectedImage.userImage}}" alt="username">
+                    <div>
+                        <main style="font-weight: bold;" class="w3-margin-top w3-margin-left w3-center w3-margin-right">
+                            {{ selectedImage.firstname }} {{ selectedImage.lastname }}</main>
+
+                        <main style="font-weight: bold;" class="w3-margin-top w3-margin-left">
+                            {{ selectedImage.title | titlecase }}</main>
+                    </div>
+                </aside>
+                <aside class="w3-margin-auto">
+                    <main class="w3-margin w3-rest">
+                        <img src='https://myteamworkproject.herokuapp.com/images/{{ selectedImage.url }}' style="max-height:310px;width:98%; height:80%;">
+                    </main>
+                </aside>
+                <aside class="w3-rest w3-margin">
+                    <aside class="w3_inline w3-margin-bottom">
+                        <main class="w3-button">
+                            <app-date [postdate]="selectedImage.datecreated"></app-date>
+                        </main>
+                    </aside>
+
+                </aside>
+            </div>
+            <form class="w3-center w3-margin-top w3-margin-bottom w3-block w3-border-bottom w3-padding" #form="ngForm" (submit)="submitImgComment(form)" novalidate>
+                <div style="width:90%;margin: auto; " class="margin-left">
+
+                    <input class="w3-input w3-center w3-border w3-round-xxlarge w3-padding-16" minlength="5" [class.formerror]="comment.invalid && comment.touched" required #comment="ngModel" id="Titleid" Placeholder="Enter Your Comment" type="text" [(ngModel)]="model.comment"
+                        name="comment">
+
+                    <i *ngIf="comment.invalid && comment.touched" style="color:white; font-size:14px">Comment is
+                        required
+                    </i>
+                </div>
+                <div class="w3-margin-right" style="margin-top: 10px;">
+                    <input type="submit" [disabled]="form.invalid" class="w3-button w3-red" value="Comment">
+                </div>
+            </form>
+
+        </div>
+
+        <aside class="w3_margin_md  w3-border-bottom w3-margin-top" *ngFor="let gifcom of gifComment">
+            <div class="w3-color">
+                <p class="w3-button w3-margin">{{gifcom.firstName}} {{gifcom.lastName}}</p>
+                <div style="margin-top: -10px;">
+                    <div class="w3-left w3-margin-right w3-margin-left">
+                        <img style="width:70px;height:70px;border-radius:50px;" class="w3-margin-bottom" src="https://myteamworkproject.herokuapp.com/images/{{gifcom.userImage}}" alt="username">
+                    </div>
+                    <div>
+                        <p>{{ gifcom.comment }}</p>
+                    </div>
+                </div>
+                <aside class="w3-padding w3-margin-bottom">
+                    <a class="w3-button w3-margin-right">
+                        <app-date [postdate]="gifcom.createdon"></app-date>
+                    </a>
+                </aside>
+
+            </div>
+        </aside>
+    </aside>
+    <app-spinner *ngIf="isLoading"></app-spinner>
+    <div *ngIf="imgSuccess">
+        <div *ngFor="let item of responseData">
+            <app-response [response]="item"></app-response>
+        </div>
+    </div>
+    <div *ngIf="imgError">
+        <div *ngFor="let error of errorData">
+            <app-response [response]="error"></app-response>
+        </div>
+    </div>
+
+</main>

@@ -1,0 +1,44 @@
+<div id="bodymain">
+  <div class="w3-container" id="contleft">
+    <main class="w3_cont">
+      <figure class="imgconp ">
+        <img class="w3-input w3-image w3-border-0" src="assets/Images/team.png" alt="">
+      </figure>
+      <form class="w3_cont formcomp w3-margin-bottom" #loginform (ngSubmit)="loginUser()">
+        <div class="w3-margin-bottom w3-margin-top">
+          <label for="email" class="w3-label">Email Address</label>
+          <input type="email" [(ngModel)]="model.email" id="txtemail" required name="email" #email="ngModel"
+            placeholder="Email Address" class="w3-input w3-padding w3-border">
+        </div>
+        <div class="w3-margin-bottom">
+          <label class="w3-label">Password</label>
+          <input type="password" class="w3-input w3-padding w3-border" name="password" required
+            [(ngModel)]="model.password" id="txtpass" #password="ngModel" placeholder="Password">
+        </div>
+        <div class="w3_center w3-margin-top">
+          <input type="submit" class="w3-input w3-red w3-hover-black w3-button w3-card" value="Login">
+        </div>
+      </form>
+    </main>
+
+  </div>
+  <app-spinner *ngIf="isloading"></app-spinner>
+
+  <main id="rightcont" class="w3-half w3-card-12">
+    <img class="" src="assets/Images/agenda.jpg" alt="">
+  </main>
+
+  <main *ngIf="isLogin">
+    <div *ngFor="let item of loginsuccess">
+      <app-response [response]='item'></app-response>
+    </div>
+  </main>
+  <main *ngIf="isError">
+    <div *ngFor="let item of loginerror">
+      <app-response [response]='item'></app-response>
+    </div>
+  </main>
+
+
+
+</div>

@@ -1,0 +1,250 @@
+<main id="postmain">
+    <div id="nav_min">
+        <div class="w3-bar w3-black w3-card w3-position w3-red w3-rest" sttyle="position:fixed">
+            <div *ngFor="let add of fontAddPost" class="w3-padding-top">
+                <button (click)='toggleleftContainer()'
+                    class="w3-bar-item w3-padding w3-card w3-button tablink w3-text-white w3-border w3-black">
+                    <i>
+                        <app-font [font]='add'></app-font>
+                    </i> Add Post</button>
+            </div>
+            <div *ngFor="let item of fontClass">
+                <button (click)='togglerightContainer()'
+                    class="w3-bar-item w3-padding w3-border w3-card tablink w3-text-white w3-black">
+                    <i>
+                        <app-font [font]='item'></app-font>
+                    </i> Previous Post</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="w3_left w3-half w3-sidebar" *ngIf="left_cont">
+        <div class="w3-center w3-block">
+            <form *ngIf="post_text" id="post_text" #formarticle="ngForm" (submit)="submitArticle(formarticle)"
+                class="w3-form w3-card w3-white w3-margin-top w3-margin-bottom w3-margin-width" novalidate>
+                <h4 style="font-weight: bold;">Write a Post</h4>
+                <div>
+                    <label class="w3-left" style="font-weight: bold;" for="Titleid">Title</label>
+                    <input class="w3-input" minlength="5" [class.formerror]="title.invalid && title.touched" required
+                        #title="ngModel" id="Titleid" Placeholder="Enter Your Post Title" type="text"
+                        [(ngModel)]="model.title" name="title">
+                    <i *ngIf="title.invalid && title.touched" style="color:red; font-size:14px">Title is required and
+                        must be
+                        greater then five(5) characters</i>
+                </div>
+                <textarea class="w3-margin-top w3-card-12 " [class.formerror]="article.invalid && article.touched"
+                    id="textpost" minlength="10" maxlength="1500" required name="article" #article="ngModel"
+                    [(ngModel)]="model.article"></textarea><br>
+                <i *ngIf="article.invalid && article.touched" style="color:red; font-size:14px"
+                    style="color:red">Article is
+                    required and must not be less than 10 more than 1500 characters</i>
+
+                <div (click)='togglePostText();' class="w3-round-large w3-margin-top w3-red w3-card w3-left w3-button">
+                    Post Image
+                </div>
+                <input type="submit" [disabled]="formarticle.invalid"
+                    class="w3-round-large w3-margin-top w3-red w3-card w3-right w3-button" value="Post Article">
+            </form>
+
+            <!-- //--------------------===========---------------------------------------------- -->
+            <form *ngIf="postupdate" #form="ngForm" (submit)="updatePostById(form)"
+                class="w3-form w3-card w3-white w3-margin-top w3-margin-bottom w3-margin-width" novalidate>
+                <h4 style="font-weight: bold;">Write a Post</h4>
+                <div>
+                    <label class="w3-left" style="font-weight: bold;" for="id">PostId</label>
+                    <input type="text" id="id" class="w3-input" name="id" value="{{updateId}}" required #id="ngModel"
+                        [(ngModel)]="updateModel.id"><br>
+
+                    <label class="w3-left" style="font-weight: bold;" for="Titleid">Title</label>
+                    <input class="w3-input" value={{updateTitle}} minlength="5"
+                        [class.formerror]="title.invalid && title.touched" required #title="ngModel" id="Titleid"
+                        Placeholder="Enter Your Post Title" type="text" [(ngModel)]="updateModel.title" name="title">
+                    <i *ngIf="title.invalid && title.touched" style="color:red; font-size:14px">Title is required and
+                        must be
+                        greater then five(5) characters</i>
+                </div>
+                <textarea class="w3-margin-top w3-card-12 " value="{{updateArticle}}"
+                    [class.formerror]="article.invalid && article.touched" id="textpost" minlength="10" maxlength="1500"
+                    required name="article" #article="ngModel" [(ngModel)]="updateModel.article"></textarea><br>
+                <i *ngIf="article.invalid && article.touched" style="color:red; font-size:14px"
+                    style="color:red">Article is
+                    required and must not be less than 10 more than 1500 characters</i>
+
+                <div (click)='toggleArticle();' class="w3-round-large w3-margin-top w3-red w3-card w3-left w3-button">
+                    Post Article
+                </div>
+                <input type="submit" [disabled]="form.invalid"
+                    class="w3-round-large w3-margin-top w3-red w3-card w3-right w3-button" value="Update Article">
+            </form>
+            <!-- ====================================================================================== -->
+            <form *ngIf="post_img" name="filecom" [formGroup]="imageForm" novalidate
+                class="w3-form w3-white w3-card w3-margin-width w3-margin-bottom w3-margin-top">
+                <label class="w3-left" style="font-weight: bold;" for="posttitle">Title</label>
+                <input class="w3-input" formControlName="title" style="margin-bottom: 2px;"
+                    [class.formerror]="imageForm.get('title').invalid && imageForm.get('title').touched || imageForm.get('title').errors?.minlength"
+                    id="posttitle" Placeholder="Enter Your Image Post Title" type="text"><br>
+                <div class="w3-bar-item">
+                    <aside class="w3-rest w3-border">
+                        <div class="w3-margin-top w3-margin-auto w3-half" id="imgcontainer"
+                            *ngIf="imagePreview !== '' && imagePreview && imageForm.get('image').valid">
+                            <img class="w3-margin-width w3-padding-top" [src]="imagePreview" alt="imageForm.title">
+                        </div>
+                    </aside>
+                    <button (click)='filePicker.click()'
+                        class="w3-button w3-border w3-margin-bottom w3-accordion w3-text-red w3-card-32">Choose
+                        Image</button>
+                    <input type="file" #filePicker (change)='onImagePicked($event)'>
+
+                    <div class="">
+                        <div (click)='togglePostImg();' class="w3-round-large w3-left w3-button w3-red">Post Text</div>
+                        <input type="submit" (click)="onUpload()" [disabled]='imageForm.invalid'
+                            class="w3-round-large w3-red w3-card w3-right w3-button" value="Post">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+
+    </div>
+    <!-- post -->
+    <main class="w3_right w3-white w3-block w3-half w3-border" *ngIf="right_cont">
+        <h4 class="w3-center" style="font-weight:bold">Previous Posts</h4>
+        <div class="w3-container w3-margin-bottom" *ngFor="let userspost of singlePost">
+            <div class="w3_block w3-card w3-border  w3-container w3-color" *ngIf="!isChecked(userspost.flagged)">
+                <aside class="w3-rest w3-margin w3_inline">
+                    <main class="w3-card w3-button">{{ userspost.title | titlecase }}</main>
+                </aside>
+                <aside>
+                    <main class="w3-margin  w3-rest">
+                        {{ userspost.article }}
+                        <img src='https://myteamworkproject.herokuapp.com/images/{{userspost.imageUrl}} '
+                            class="w3-card" style="max-height:310px;width:98%; height:80%;" *ngIf="userspost.imageUrl">
+                    </main>
+                </aside>
+                <aside class="w3-rest w3-margin">
+                    <aside class="w3_inline w3-padding-bottom">
+                        <main *ngFor="let comment of trashIcon">
+                            <a class="w3-button w3-card postbtn w3-margin-right" title="comment"
+                                [routerLink]="['/Comment', userspost.article_id]" *ngIf="userspost.article" id="jjj"
+                                >
+                                <app-font [font]='comment'></app-font>
+                            </a>
+                            <div class="w3-button w3-card postbtn w3-margin-right" title="comment"
+                                [routerLink]="['/ImageComment', userspost.gif_id]" *ngIf="userspost.imageUrl">
+                                <app-font [font]='comment'></app-font>
+                            </div>
+                        </main>
+                        <main *ngFor="let update of updateIcon">
+                            <div class="w3-button w3-card-12 w3-blue-gray postbtn w3-margin-right" title="Update Post"
+                                (click)='toggleUpdateArticle(userspost.article_id)' *ngIf="userspost.article">
+                                <app-font [font]='update'></app-font>
+                            </div>
+                        </main>
+
+                        <!-- trash for txt post -->
+                        <main *ngFor="let delete of deleteIcon">
+                            <div class="w3-button w3-card-12 w3-red postbtn w3-margin-right" title="delete Post"
+                                id="trashaction" (click)='confirmDelete(userspost.article_id) '
+                                *ngIf="userspost.article">
+                                <app-font [font]='delete '></app-font>
+                            </div>
+
+                            <!-- delete for txt post -->
+                            <div class="w3-button w3-card-12 w3-red postbtn w3-margin-right" title="delete Post"
+                                (click)='confirmGifDel(userspost.gif_id) ' *ngIf="userspost.imageUrl">
+                                <app-font [font]='delete '></app-font>
+                            </div>
+                        </main>
+
+                        <!-- post date created -->
+                        <div class="w3-button w3-card postbtn">
+                            <app-date [postdate]="userspost.dateCreated"></app-date>
+                        </div>
+                    </aside>
+
+                </aside>
+
+                <!-- ================================================================================== -->
+                <div *ngIf="modalcontent" class="content">
+                    <div id="id01">
+                        <div class="w3-modal-content w3-card-24 w3-animate-zoom" style="max-width:300px">
+                            <div class="w3-center"><br>
+                                <div *ngFor="let warning of fontWarningIcon">
+                                    <i id="checkedicon">
+                                        <app-font [font]='warning'></app-font>
+                                    </i>
+                                    <p>{{this.successConfrimMessage}}</p>
+                                </div>
+                            </div>
+                            <div class="w3-container">
+                                <div class="w3-section w3-center">
+                                    <div id="deleteoption">
+                                        <a class="btndelete w3-half w3-padding-right w3-card w3-red w3-margin-bottom w3-margin-top w3-button w3-green"
+                                            (click)='getDeleteArticle() ' id="deletetxt" *ngIf="vpost">Trash</a>
+                                        <button
+                                            class="btndelete w3-half w3-padding-right w3-card w3-red w3-margin-bottom w3-margin-top w3-button w3-green"
+                                            (click)='getDeleteGifs() ' id="deletegif" *ngIf="ypost">Delete</button>
+
+                                        <button
+                                            class="btndelete w3-half w3-card w3-red w3-margin-bottom w3-margin-top w3-button w3-green"
+                                            (click)='cancelDelete() '>Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ================================================================================== -->
+
+            </div>
+
+        </div>
+
+        <br>
+
+
+    </main>
+    <!--Adding spinner-->
+    <app-spinner *ngIf="isLoading"></app-spinner>
+
+    <div *ngIf="clicksuccess">
+        <div *ngFor="let item of responseData">
+            <!-- <div id="modalconten" class="content"> -->
+            <app-response [response]="item"></app-response>
+        </div>
+    </div>
+
+    <div *ngIf="errorresponse">
+        <div *ngFor="let error of errorData">
+            <app-response [response]="error"></app-response>
+        </div>
+    </div>
+
+    <div *ngIf="deletesuccess">
+        <div *ngFor="let success of deleteSuccess">
+            <app-response [response]="success"></app-response>
+        </div>
+    </div>
+
+    <div *ngIf="deleteerror">
+        <div *ngFor="let delerror of deleteError">
+            <app-response [response]="delerror"></app-response>
+        </div>
+    </div>
+
+    <div *ngIf="updatesuccess">
+        <div *ngFor="let upsucess of updateSuccess">
+            <app-response [response]="upsucess"></app-response>
+        </div>
+    </div>
+
+    <div *ngIf="updateerror">
+        <div *ngFor="let uperror of updateError">
+            <app-response [response]="uperror"></app-response>
+        </div>
+    </div>
+
+
+</main>

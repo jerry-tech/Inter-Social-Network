@@ -1,0 +1,32 @@
+* {
+    font-family: monospace;
+}
+
+#container {
+    margin-top: 85px;
+}
+
+.w3-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.w3-margin-auto {
+    margin: auto;
+}
+
+@media screen and (max-width:1190px) {
+    #postcont {
+        width: 100%;
+        margin: 0px
+    }
+    .m9 {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:993px) {
+    #container {
+        margin-top: 71px;
+    }
+}

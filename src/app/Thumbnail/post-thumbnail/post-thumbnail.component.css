@@ -1,0 +1,39 @@
+.w3-color {
+    background: rgb(195, 188, 188);
+    margin-bottom: 2%;
+}
+
+.w3_inline {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.w3_inline>.postbtn {
+    margin-right: 5px;
+    text-decoration: underline;
+}
+
+.w3_block {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width:356px) {
+    .w3_inline>.postbtn {
+        padding: 10px 10px;
+        margin-bottom: 10px;
+    }
+}
+
+.w3-margin-auto {
+    margin: auto;
+}
+
+.w3-inline-right {
+    display: flex;
+    justify-content: right;
+}
+
+.w3-shadow {
+    box-shadow: 2px 2px 2px black;
+}

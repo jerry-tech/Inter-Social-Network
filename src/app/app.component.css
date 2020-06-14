@@ -1,0 +1,90 @@
+*{
+    font-family: monospace;
+}
+#topNavigate{
+    background: linear-gradient(to right, rgb(155, 7, 7),rgba(0, 0, 0, 0.945));
+    color:white;
+    box-shadow: 4px 2px 4px 0px black;
+}
+.w3_inline {
+    display: flex;
+    /* align-items: baseline; */
+}
+#title{
+    font-size:30px;
+    font-weight: bold;
+}
+#navlinks{
+    float:right;
+    padding-right:2%;
+}
+#navlinks>a{
+    margin:15px;
+}
+#user{
+    background: white;
+    color:red;
+    font-weight: bold;
+}
+#navlinks .active{
+    background: rgba(245, 4, 4, 0.835);
+    color:white;
+}
+#menubar{
+    display:none;
+}
+#mySidebar{
+    background: linear-gradient(to right, rgba(19, 11, 11, 0.746),rgb(155, 7, 7)); z-index:3;
+    width:50%;
+    font-weight:bold;
+}
+
+@media screen and (max-width:992px){
+    #largetop{
+        display:none;
+    }
+    #menubar{
+        display:block;
+    }
+}
+@media screen and (max-width:503px){
+    #mySidebar{
+        width:75%;
+    }
+}
+
+
+  .typewriter {
+    display: inline-block;
+  }
+  
+  .typewriter-text {
+    display: inline-block;
+    overflow: hidden;
+    letter-spacing: 2px;
+    animation: typing 5s steps(50, end), blink .75s step-end infinite;
+    white-space: nowrap;
+    font-size: 30px;
+    border-right: 2px solid white;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  @keyframes typing {
+    from { 
+        width: 0% 
+    }
+    to { 
+        width: 100% 
+    }
+  }
+  
+  @keyframes blink {
+    from, to { 
+        border-color: transparent 
+    }
+    50% { 
+        border-color: white; 
+    }
+  }
+  

@@ -1,0 +1,173 @@
+<div style="z-index:99; width:100%">
+    <div class="w3-bar w3-black w3-card w3-position">
+        <div id="tabs">
+            <button class="w3-bar-item w3-button tablink" (click)='toggleLinks()'><i class="fa fa-adn w3-margin-right"></i>Add
+        Employee</button>
+            <button class="w3-bar-item w3-button tablink" (click)="togglePost()"><i
+          class="fa fa-flag-checkered w3-margin-right"></i>Flagged Post</button>
+        </div>
+        <button class="w3-bar-item w3-button tablink" (click)="toggleUser()"><i class="fa fa-user w3-margin-right"></i>All
+      Users</button>
+        <button class="w3-bar-item w3-button tablink" id="back" (click)="toggleRegForm()"><i
+        class="fa fa-arrow-left w3-margin-right"></i>
+      Back</button>
+    </div>
+</div>
+<header id="main_cont">
+    <br>
+    <div id="account" *ngIf="account" class="w3-container w3-white w3-card w3-half myLink">
+        <div id="accountmid">
+            <h3 class="w3-margin-top w3-margin-bottom">Employee Account</h3>
+            <form class="w3-block" [formGroup]="adminRegister">
+                <div class="w3-rest w3-block w3-margin-bottom">
+                    <label class="w3-margin-bottom" for="userImage">Upload Image</label>
+
+                    <figure style="margin-left: -5%;" *ngIf="previewImage != '' && previewImage && adminRegister.get('userImage').valid">
+                        <img [src]="previewImage" style="width:82%;height:60%; max-height: 300px;" class="w3-card-12 w3-border w3-block w3-margin-bottom w3-margin-width" alt="Registration Image">
+                    </figure>
+                    <button (click)='filePicker.click()' id="userImage" class="w3-button w3-border w3-threequarter w3-margin-bottom w3-accordion w3-black w3-hover-red w3-hover-border-black w3-card-32">Choose
+            Image</button>
+
+                    <input class="w3-threequarter" style="display:none" #filePicker (change)='onImagePicked($event)' type="file">
+                </div>
+                <div class="w3-rest w3-block w3-margin-bottom">
+                    <label for="firstname">Firstname</label>
+                    <input id="firstname" class="w3-input w3-threequarter" formControlName="firstName" type="text" [class.formerror]="(adminRegister.get('firstName').touched || adminRegister.get('firstName').dirty) && !adminRegister.get('firstName').valid" placeholder="Enter Firstname"
+                    />
+                    <i *ngIf=" adminRegister.get('firstName').errors?.maxlength" style="color: red;text-align: left;">First name
+            too long</i>
+                </div>
+                <div class="w3-rest w3-block w3-margin-bottom">
+                    <label>Lastname</label>
+                    <input class="w3-input w3-threequarter" formControlName="lastName" type="text" [class.formerror]="(adminRegister.get('lastName').touched || adminRegister.get('lastName').dirty) && !adminRegister.get('lastName').valid" placeholder="Enter Lastname">
+                    <i *ngIf=" adminRegister.get('lastName').errors?.maxlength" style="color: red;text-align: left;">Last name
+            name too long</i>
+                </div>
+                <div class="w3-rest w3-block w3-margin-bottom">
+                    <label>Email Address</label>
+                    <input class="w3-input w3-threequarter" formControlName="email" type="email" [class.formerror]="(adminRegister.get('email').touched || adminRegister.get('email').dirty) && !adminRegister.get('email').valid" placeholder="Enter Email Address">
+                </div>
+
+                <div class="w3-rest w3-block w3-margin-bottom">
+                    <label>Gender</label>
+                    <aside class="w3-margin-top w3-margin-bottom">
+                        <input class="w3-radio" type="radio" (click)="setGender('Male')" value="Male" formControlName="gender"><span class="w3-margin-right"> Male</span>
+                        <input class="w3-radio" type="radio" (click)="setGender('Female')" value="Female" formControlName="gender"><span class="w3-margin-right"> Female</span>
+                    </aside>
+                </div>
+                <div class="w3-rest w3-block w3-margin-bottom">
+                    <label>Address</label>
+                    <textarea class="w3-input w3-border w3-threequarter" formControlName="address" type="text" [class.formerror]="(adminRegister.get('address').touched || adminRegister.get('address').dirty) && !adminRegister.get('address').valid" placeholder="Enter Address"></textarea>
+                    <i *ngIf=" adminRegister.get('address').errors?.minlength" style="color: red;text-align: left;">Address too
+            short</i>
+                </div>
+                <div class="w3-rest w3-block w3-margin-bottom">
+                    <label>Job role</label>
+                    <select class="w3-input w3-threequarter" formControlName="jobrole" [class.formerror]="(adminRegister.get('jobrole').touched || adminRegister.get('jobrole').dirty) && !adminRegister.get('jobrole').valid">
+            <option [ngValue]="null" disabled>Choose your job role</option>
+            <option *ngFor="let job of allJobs" [ngValue]="job">{{ job }}</option>
+          </select>
+                </div>
+                <div class="w3-rest w3-block w3-margin-bottom">
+                    <label>Department</label>
+                    <input class="w3-input w3-threequarter" list="depts" formControlName="dept" type="text" [class.formerror]="(adminRegister.get('dept').touched || adminRegister.get('dept').dirty) && !adminRegister.get('dept').valid" placeholder="Enter Department">
+
+                    <datalist id="depts">
+            <option value="Human Resources"></option>
+            <option value="IT & Computing"></option>
+            <option value="Eletrical & Maintenance"></option>
+            <option value="Transport & Logistics"></option>
+            <option value="Accounting"></option>
+            <option value="Auditing"></option>
+            <option value="Sales"></option>
+            <option value="Marketing"></option>
+          </datalist>
+                </div>
+                <!--Passord group validation-->
+                <aside formGroupName="passwordGroup">
+                    <div class="w3-rest w3-block w3-margin-bottom">
+                        <label>Password</label>
+                        <input class="w3-input w3-threequarter" type="password" formControlName="password" [ngClass]="{'formerror': adminRegister.get('passwordGroup').errors || ((adminRegister.get('passwordGroup.password').touched || adminRegister.get('passwordGroup.password').dirty) && !adminRegister.get('passwordGroup.password').valid)}"
+                            placeholder="Enter Password">
+
+                        <i *ngIf="adminRegister.get('passwordGroup.password').errors?.minlength" style="color: red;text-align: left;">Password
+              must be at least (6) characters</i>
+                    </div>
+
+                    <div class="w3-rest w3-block w3-margin-bottom">
+                        <label>Confirm Password</label>
+                        <input class="w3-input w3-threequarter" type="password" formControlName="confpassword" [ngClass]="{'formerror': adminRegister.get('passwordGroup').errors || ((adminRegister.get('passwordGroup.confpassword').touched || adminRegister.get('passwordGroup.confpassword').dirty) && !adminRegister.get('passwordGroup.confpassword').valid)}"
+                            placeholder="Enter Confirm Password">
+
+                        <i *ngIf="adminRegister.get('passwordGroup').errors?.match" style="color: red;text-align: left;">
+              The confirmation does not match the email address
+            </i>
+                    </div>
+
+                </aside>
+
+                <div class="w3-margin-top w3-margin-bottom">
+                    <button type="submit" (click)="save()" class="w3-red w3-button w3-red w3-hover-black w3-margin-right">Submit</button>
+                    <button type="reset" class="w3-button w3-dark-grey">Reset</button>
+                </div>
+
+                <!-- {{ adminRegister.value | json }} -->
+            </form>
+        </div>
+
+    </div>
+
+    <div *ngIf="rightcont" id="rightcont" class="w3-half w3-right w3-card">
+        <h3 class="w3-center w3-margin-top">FLAGGED POSTS</h3>
+        <div class="w3-container w3-margin w3-border w3-card" *ngFor="let flag of flaggedPost">
+            <app-post-thumbnail [feed]='flag'></app-post-thumbnail>
+        </div>
+
+    </div>
+    <aside class="w3-card w3-section w3-responsive w3-center" *ngIf="activeusers" id="activeusers">
+        <table class="w3-table-all" id="table">
+            <thead>
+                <tr class="w3-red" style="font-family: Arial, Helvetica, sans-serif;">
+                    <th>Image</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Email</th>
+                    <th>UserId</th>
+                    <th>Gender</th>
+                    <th>JobRole</th>
+                    <th>Department</th>
+                    <th>Address</th>
+                    <th>DateCreated</th>
+                </tr>
+            </thead>
+            <tr *ngFor="let user of allUsers" class="w3-card">
+                <td><img src="https://myteamworkproject.herokuapp.com/images/{{user.userImage}}" alt="{{user.firstName}}" style="width:70px;height:70px;border-radius:50px;"></td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.user_id}}</td>
+                <td>{{user.gender}}</td>
+                <td>{{user.jobRole}}</td>
+                <td>{{user.dept}}</td>
+                <td>{{user.address}}</td>
+                <td>{{user.createdOn}}</td>
+            </tr>
+
+        </table>
+
+    </aside>
+    <app-spinner *ngIf="isLoading"></app-spinner>
+    <div *ngIf="clickAdmin">
+        <div *ngFor="let item of formResponse">
+            <app-response [response]="item"></app-response>
+        </div>
+    </div>
+
+    <div *ngIf="errorAdmin">
+        <div *ngFor="let error of errorData">
+            <app-response [response]="error"></app-response>
+        </div>
+    </div>
+
+
+</header>

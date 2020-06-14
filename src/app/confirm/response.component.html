@@ -1,0 +1,21 @@
+<div id="modalcontent" class="content">
+    <div id="id01">
+        <div class="w3-modal-content w3-card-24 w3-border w3-animate-zoom" style="max-width:300px">
+            <div class="w3-center"><br>
+                <h2>{{response.postid}}</h2>
+                <i class="{{response.fontawesome}}" id="checkedicon"></i>
+                <!--font awesome class-->
+            </div>
+            <div class="w3-container">
+                <div class="w3-section w3-center">
+                    <div class="w3-margin-top" style="color:red">
+                        <!--message-->{{response.message}}
+                    </div>
+                    <div id="deleteoption" class="w3-margin-bottom">
+                        <button *ngIf="response.navigateTo" title="Go to Home Page" routerLink="response.navigateTo" class="btndelete w3-half w3-card w3-red w3-margin-bottom w3-margin-top w3-button w3-green ">Home</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

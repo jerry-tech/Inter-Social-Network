@@ -1,0 +1,91 @@
+.w3-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.w3-position {
+    position: fixed;
+}
+
+#account {
+    margin-top: 1%;
+}
+
+.formerror {
+    border: 2px solid red;
+}
+
+#main_cont {
+    width: 100%;
+    margin-top: 83px;
+}
+
+#accountmid {
+    width: 75%;
+    margin: auto;
+}
+
+#tabs {
+    display: none;
+}
+
+#rightcont {
+    width: 50%;
+}
+
+@media screen and (max-width:992px) {
+    #main_cont {
+        margin-top: 70px;
+    }
+}
+
+@media screen and (max-width:950px) {
+    #rightcont {
+        width: 100%;
+    }
+    #account {
+        width: 100%;
+    }
+    #back {
+        display: none;
+    }
+    #tabs {
+        display: block;
+    }
+}
+
+#activeusers {
+    /* display: none; */
+    width: 100%;
+    /* margin-top: 83px; */
+}
+
+@media screen and (max-width:517px) {
+    #accountmid {
+        width: 100%;
+        margin: auto;
+    }
+}
+
+@media screen and (max-width:454px) {
+    #account,
+    #table {
+        margin-top: 52px;
+        background: black;
+    }
+}
+
+@media screen and (max-width:294px) {
+    #account,
+    #table {
+        margin-top: 80px;
+    }
+}
+
+#clickAdmin {
+    display: none;
+}
+
+#errorAdmin {
+    display: none;
+}

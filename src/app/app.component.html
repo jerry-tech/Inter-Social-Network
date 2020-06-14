@@ -1,0 +1,50 @@
+<!-- navigation bar for small screens -->
+
+<header style="background: linear-gradient(to right, rgb(155, 7, 7),rgba(0, 0, 0, 0.945));" class="w3-container w3-bar  w3-top w3-card w3-hide-large w3-red w3-xlarge w3-padding">
+    <a class="w3-button w3-red w3-margin-right" (click)='w3_open()'>☰</a>
+
+    <span>TEAM WORK</span>
+
+
+</header>
+<!-- nav bar for small screens -->
+<main id="menubar" *ngIf="this.authservice.getFullName()">
+    <div style="background: whitesmoke; width:100%;">
+        <nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" id="mySidebar"><br>
+            <a (click)='w3_close()' class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+            <div class="w3-container w3-padding-64 w3_inline" >
+                <span><img style="width:70px;height:70px;border-radius:50px;" *ngIf="this.authservice.getUserImage()"  src="https://myteamworkproject.herokuapp.com/images/{{this.authservice.getUserImage()}}" alt="username"></span>
+                <div class="w3-margin-left"  style="margin-top: 16px;">{{this.authservice.getFullName()}}</div>
+            </div>
+            <div class="w3-bar-block" style="font-size: x-large;">
+                <a (click)='w3_close()' [routerLink]="['/Home']" routerLinkActive="active" class="w3-bar-item w3-button w3-padding-bottom w3-hover-red" style="border-bottom: 1px solid whitesmoke;">Home</a>
+                <a (click)='w3_close()' [routerLink]="['/Post']" routerLinkActive="active" class="w3-bar-item w3-button w3-padding-bottom w3-hover-red" style="border-bottom: 1px solid whitesmoke;">Post</a>
+                <a (click)='w3_close()' [routerLink]="['/Admin']" routerLinkActive="active" class="w3-bar-item w3-button w3-hover-red" style="border-bottom: 1px solid whitesmoke;" *ngIf="authservice.getJobRole()">Admin</a>
+                <a (click)='w3_close()' [routerLink]="['/Login']" routerLinkActive="active" class="w3-bar-item w3-button w3-white w3-hover-red" style="border-bottom: 1px solid whitesmoke;" *ngIf="!this.authservice.getUsername()">Login</a>
+                <a (click)='w3_close()' title="Sign out of Team Work" class="w3-bar-item w3-button w3-red  w3-margin-top" *ngIf="this.authservice.getUsername()" (click)="logout()">{{ this.authservice.getUsername() }}</a>
+
+
+            </div>
+        </nav>
+    </div>
+</main>
+<!-- navigation bar -->
+<div class="w3-top" id="largetop" *ngIf="this.authservice.getFullName()">
+    <div id="topNavigate" class="w3-bar w3-wide w3-padding w3-card">
+        <a id="title" class="w3-bar-item"><b>TEAM WORK</b></a>
+        <!-- Float links to the right. Hide them on small screens -->
+        <div id="navlinks" class="w3-hide-small">
+            <a class="w3-bar-item w3-button" [routerLink]="['/Home']" routerLinkActive="active">Home</a>
+            <a class="w3-bar-item w3-button" [routerLink]="['/Post']" routerLinkActive="active">Post</a>
+            <a class="w3-bar-item w3-button" [routerLink]="['/Admin']" routerLinkActive="active" *ngIf="authservice.getJobRole()">Admin</a>
+            <a class="w3-bar-item w3-button" [routerLink]="['/Login']" routerLinkActive="active" *ngIf="!this.authservice.getUsername()">Login</a>
+            <a id="user" class="w3-bar-item w3-button  w3-round-xxlarge" title="Sign out of Team Work" routerLinkActive="active" *ngIf="this.authservice.getUsername()" (click)="logout()">{{ this.authservice.getUsername() }}</a>
+        </div>
+    </div>
+</div>
+<!--Loading Spinner-->
+<app-spinner *ngIf="showLoadingIndicator"></app-spinner>
+
+<div [@slideInAnimation]="o.isActivated ? o.activatedRoute : ''">
+    <router-outlet #o="outlet"></router-outlet>
+</div>

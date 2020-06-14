@@ -1,0 +1,155 @@
+* {
+    font-family: monospace;
+}
+
+.content {
+    /* display: none; Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+.w3_inline {
+    display: flex;
+    align-items: baseline;
+}
+
+#nav_min {
+    width: 100%;
+    background: whitesmoke;
+    display: none;
+}
+
+.w3_left {
+    float: left;
+    background: black;
+    position: fixed;
+    height: 100%;
+}
+
+.w3_right {
+    float: right;
+}
+
+@media screen and (max-width: 870px) {
+    .w3_right {
+        display: none;
+        float: none;
+        width: 100%;
+    }
+    .w3_left {
+        float: none;
+        width: 100%;
+        position: relative;
+    }
+    #nav_min {
+        display: block;
+    }
+}
+
+.formerror {
+    border: 3px solid red;
+}
+
+.w3-block {
+    display: flex;
+    flex-direction: column;
+}
+
+#textpost {
+    width: 99.5%;
+    height: 170px;
+}
+
+.w3-margin-width {
+    margin: auto;
+    width: 80.5%;
+}
+
+#post_text {
+    display: block;
+}
+
+#postmain {
+    margin-top: 80px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+@media screen and (max-width:992px) {
+    #postmain {
+        margin-top: 65px;
+    }
+}
+
+@media screen and (max-width:601px) {
+    #post_text {
+        width: 100%;
+    }
+}
+
+
+/* #modalcontent {
+    display: none;
+} */
+
+#checkedicon {
+    color: red;
+    font-size: 650%;
+}
+
+.btngo {
+    width: 100%;
+    margin: auto;
+}
+
+
+/* 
+#postupdate {
+    display: none;
+} */
+
+#id01 {
+    margin: 10% auto 15% auto;
+}
+
+@media screen and (max-width:600px) {
+    #id01 {
+        margin: 100px 20%;
+    }
+}
+
+@media screen and (max-width:350px) {
+    #id01 {
+        margin: 100px 3%;
+    }
+}
+
+.btndelete {
+    width: 40%;
+    margin: auto;
+}
+
+#deleteoption {
+    display: flex;
+}
+
+#okDisplay {
+    display: none;
+}

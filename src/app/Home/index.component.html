@@ -1,0 +1,25 @@
+<div id="container">
+
+    <!-- -------------------------------- -->
+    <div class="w3-row">
+        <main class="w3-white w3-block w3-twothird w3-border w3-col m12 l12">
+            <!-- -------------------------------------  -->
+            <div class="w3-container w3-col m7 I9 w3-margin-auto w3-card w3-border w3-margin-bottom w3-padding-top w3-rest">
+                <form>
+                    <div class="w3-block w3-center">
+                        <input placeholder="Search Team Work based on title" [(ngModel)]='listFilter' class="w3-threequarter w3-center w3-margin-auto w3-padding w3-input w3-margin-top w3-margin-bottom" type="text" name="search">
+
+                        <div class="w3-container w3-margin-top">
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="w3-container w3-col m7 I9 w3-margin-auto w3-card w3-border w3-margin-bottom w3-padding-top w3-rest" *ngFor="let feed of filteredFeeds">
+                <app-post-thumbnail [feed]='feed' *ngIf="!isChecked(feed.flagged) && !isLoading && this.filteredFeeds"></app-post-thumbnail>
+            </div>
+        </main>
+    </div>
+    <app-spinner *ngIf="isLoading"></app-spinner>
+
+</div>
