@@ -37,6 +37,7 @@ export class IndexComponent implements OnInit {
       this.feeds.myData.subscribe(allposts => {
         this.allFeeds = allposts;
         this.filteredFeeds = this.allFeeds;
+        console.log(this.allFeeds)
         this.isLoading = false;
         }, err => {
           this.isLoading = true;

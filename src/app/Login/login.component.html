@@ -4,19 +4,20 @@
       <figure class="imgconp ">
         <img class="w3-input w3-image w3-border-0" src="assets/Images/team.png" alt="">
       </figure>
-      <form class="w3_cont formcomp w3-margin-bottom" #loginform (ngSubmit)="loginUser()">
+      <form  #loginform="ngForm" (ngSubmit)="loginUser()" novalidate class="w3_cont formcomp w3-margin-bottom">
         <div class="w3-margin-bottom w3-margin-top">
           <label for="email" class="w3-label">Email Address</label>
-          <input type="email" [(ngModel)]="model.email" id="txtemail" required name="email" #email="ngModel"
-            placeholder="Email Address" class="w3-input w3-padding w3-border">
+          <input type="email"  id="txtemail"  name="email"  #email="ngModel" required
+            placeholder="Email Address" [(ngModel)]="model.email" class="w3-input w3-padding w3-border" minlength="13" >
         </div>
         <div class="w3-margin-bottom">
           <label class="w3-label">Password</label>
           <input type="password" class="w3-input w3-padding w3-border" name="password" required
-            [(ngModel)]="model.password" id="txtpass" #password="ngModel" placeholder="Password">
+            [(ngModel)]="model.password" id="txtpass" #password="ngModel" minlength="4" placeholder="Password">
         </div>
         <div class="w3_center w3-margin-top">
-          <input type="submit" class="w3-input w3-red w3-hover-black w3-button w3-card" value="Login">
+          <input type="submit" [disabled]="loginform.invalid" class="w3-border w3-input w3-red w3-hover-black w3-button w3-card" value="Login">
+          
         </div>
       </form>
     </main>

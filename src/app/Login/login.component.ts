@@ -69,6 +69,10 @@ export class LoginComponent implements OnInit {
 
       },
       err => {
+         //loading spinners and response
+         this.isloading = false;
+         this.isError = true;
+         this.errorLogin();
       }
     )
     // console.log(this.model);

@@ -9,8 +9,8 @@
             </div>
         </aside>
         <aside>
-            <main class="w3-margin" style="font-weight: 300;">
-                {{ feed.article }}
+            <main class="w3-margin" style="font-weight: 400;">
+                <p>{{ feed.article }}</p>
                 <img src='https://myteamworkproject.herokuapp.com/images/{{feed.imageUrl}}' style="max-height:310px;width:98%; height:80%;" *ngIf="feed.imageUrl">
             </main>
         </aside>

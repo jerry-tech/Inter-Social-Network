@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DataService } from '../Users/data.service';
 
 @Component({
   selector: 'app-date',
@@ -31,8 +30,6 @@ export class DateComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
-   
   }
 
   calculateDate(dateCreated: string): any {
@@ -67,13 +64,13 @@ export class DateComponent implements OnInit {
     //getting time
     var seconds = date.getSeconds();
     var minutes = date.getMinutes();
-    var hour = date.getHours();
+    var hour = date.getHours() ;
 
     this.currentTime = hour + ":" + minutes + ":" + seconds;
 
     this.firstDate = this.currentDateAbb(this.month) + " " + date.getDate().toString() + ", " +
       date.getFullYear().toString() + " " + this.currentTime;
-    // console.log(this.firstDate);
+    console.log(this.firstDate);
 
     /*second date time */
     this.secondDate = this.dataDateAbb(dbMonth) + " " + dbDay + ", " +
@@ -205,7 +202,6 @@ export class DateComponent implements OnInit {
     var diff = (secondDate.getTime() - firstDate.getTime()) / 1000;
     diff /= (60 * 60 * 24);
     this.yearDiff = Math.abs(Math.round(diff / 365.25));
-
 
     return this.yearDiff;
   }
